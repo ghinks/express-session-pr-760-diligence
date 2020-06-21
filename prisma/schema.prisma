@@ -1,0 +1,15 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://postgres:keyboardcat@localhost:5432/session?schema=public"
+}
+
+model Session {
+  data    String
+  expires DateTime
+  id      String   @id
+  sid     String   @unique
+}
