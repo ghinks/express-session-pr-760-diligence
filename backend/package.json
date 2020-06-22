@@ -11,7 +11,7 @@
   "dependencies": {
     "@nexus/schema": "0.14.0",
     "@prisma/client": "2.0.1",
-    "@quixo3/prisma-session-store": "^0.1.963",
+    "@quixo3/prisma-session-store": "^0.2.0",
     "body-parser": "^1.19.0",
     "cuid": "^2.1.8",
     "express-session": "^1.17.0",
