@@ -1,5 +1,5 @@
 # due diligence
-A repo to demonstrate the prisma-session-store module, in context.
+A repo to demonstrate the prisma-session-store module, operating and passing tests in context.
 
 # Setup
 
