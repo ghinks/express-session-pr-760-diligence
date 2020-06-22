@@ -19,6 +19,8 @@ Details:
 
 # Running Tests for prisma-session-store
 
+Runs test suite located at: prisma-session-store/test/test-prisma-session-store.js 
+
 1. In a second console, navigate to the project folder (express-session-pr-760-diligence)
 2. Enter the running backend container, with ```docker exec -it backend bash```
 3. Navigate to prisma-session-store, with ```cd node_modules/\@quixo3/prisma-session-store/```
