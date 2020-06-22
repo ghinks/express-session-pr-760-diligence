@@ -76,6 +76,6 @@ const prismaStudioUrl = backendBaseUrl + ':' + prismaStudioPort;
 const server = app.listen(backendPort, () =>
   console.log(
     '🚀 Prisma Studio ready at:'+ prismaStudioUrl + '\n' +
-    '🚀 REST API ready at:' + backendUrl + '\n'
+    '🚀 Server at:' + backendUrl + '\n'
     ) 
 )
