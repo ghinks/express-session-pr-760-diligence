@@ -17,7 +17,7 @@ This configures three docker containers (database, backend and prisma), as start
 
 Runs test suite located at: prisma-session-store/test/test-prisma-session-store.js 
 
-1. In a second console, navigate to the project folder (express-session-pr-760-diligence)
+1. In a third console, navigate to the project folder (express-session-pr-760-diligence)
 2. Enter the running backend container, with ```docker exec -it backend bash```
 3. Navigate to prisma-session-store, with ```cd node_modules/\@quixo3/prisma-session-store/```
 4. Install test dependencies (i.e. mocha), with ```yarn install ```
@@ -30,9 +30,13 @@ Runs test suite located at: prisma-session-store/test/test-prisma-session-store.
 2. Run ```yarn start```; this starts the docker containers: database, backend, and prisma.
 
 Prisma Studio ready at:http://localhost:5555
+
 REST API ready at:http://localhost:2020
+
 REST Endpoints:
+
 * users/
+
 * sessions/ (empty)
 
 
