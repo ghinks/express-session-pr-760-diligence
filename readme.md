@@ -29,15 +29,17 @@ Runs test suite located at: prisma-session-store/test/test-prisma-session-store.
 
 Prisma Studio ready at:http://localhost:5555
 
-REST API ready at:http://localhost:2020
+Tabs can be created for sessions and users. Initially, there are no sessions, until a browser hits one of the endpoints below.
 
-REST Endpoints:
+Server at:http://localhost:2020
+
+Endpoints:
 
 * / - Hello World
 
 * users/
 
-* sessions/ (empty)
+* sessions/
 
 
 
