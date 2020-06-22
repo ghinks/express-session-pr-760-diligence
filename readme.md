@@ -8,13 +8,9 @@ prisma connect module.
 1. Navigate to the project folder (express-session-pr-760-diligence)
 2. Install the npm packages, using ```yarn setup```. This could take a few minutes.
 3. Run docker-compose file, using ```yarn start```
-4. Run a first migration, using ```yarn migrate:first```. This creates the database tables (including Session).
+4. In a second console, navigate to the project folder (express-session-pr-760-diligence), and run a first migration, using ```yarn migrate:first```. This creates the database tables (including the Session table).
 
-This configures database, backend and prisma containers.
-Details:
-* prisma container mounted in the backend container
-* Project src mounted in backend/src
-* Project npm modules copied.
+This configures three docker containers (database, backend and prisma), as starts both prisma and the server.
 * Approach inspired by: https://github.com/CaptainChemist/blog-prisma2
 
 # Running Tests for prisma-session-store
