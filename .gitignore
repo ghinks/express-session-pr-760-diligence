@@ -1,4 +1,5 @@
-**.env
+# Using a .env file for demo purposes only
+#**.env
 
 yarn.lock
 
