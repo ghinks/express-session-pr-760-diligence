@@ -1,7 +1,5 @@
 # due diligence
-Using a local docker postgres container and running prisma to setup. Some issues were
-encountered and this small repo is intended to help overcome any doubts about the
-prisma connect module.
+A repo to demonstrate the prisma-session-store module, in context.
 
 # Setup
 
@@ -23,7 +21,7 @@ Runs test suite located at: prisma-session-store/test/test-prisma-session-store.
 4. Install test dependencies (i.e. mocha), with ```yarn install ```
 5. Run tests, with ```yarn test```
 
-# Trying out Prisma
+# Simple Server, with Prisma-backed Session Store
 
 1. After setup (above), navigate to the project folder (express-session-pr-760-diligence)
 2. Run ```yarn seed```, to seed the database with 2 users.
@@ -34,6 +32,8 @@ Prisma Studio ready at:http://localhost:5555
 REST API ready at:http://localhost:2020
 
 REST Endpoints:
+
+* / - Hello World
 
 * users/
 
