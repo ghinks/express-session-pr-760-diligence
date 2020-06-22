@@ -1,12 +1,36 @@
 import { PrismaClient } from '@prisma/client'
 import * as bodyParser from 'body-parser'
-const express = require('express')
+import * as express from 'express'
+import * as expressSession from 'express-session'
 
+//Prisma, and PrismaSessionStore
 const prisma = new PrismaClient()
+const PrismaSessionStore = require('@quixo3/prisma-session-store')(expressSession)
+
 const app = express()
 
-app.use(bodyParser.json())
+//Middleware
 
+app.use(bodyParser.json())
+ 
+app.use(
+  expressSession({
+    cookie: { 
+        maxAge: 7 * 24 * 60 * 60 * 1000 // ms
+    },
+    secret: 'a santa at nasa',
+    store: new PrismaSessionStore(
+      prisma, 
+      {
+        checkPeriod: 2 * 60 * 1000,  //ms
+        dbRecordIdIsSessionId: true,
+        dbRecordIdFunction: null,
+      }
+    )
+  })
+)
+ 
+//Routes
 
 app.get('/', function (req, res) {
   res.send('hello world')
@@ -40,12 +64,14 @@ app.get(`/sessions`, async (req, res) => {
 
 
 //URL's and Paths
+
 const backendBaseUrl = process.env.BACKEND_URL;
 const prismaStudioPort = parseInt(process.env.PRISMA_PORT || '5555');
 const backendPort = parseInt(process.env.BACKEND_PORT || '2020');
 const backendUrl = backendBaseUrl + ':' + backendPort;
 const prismaStudioUrl = backendBaseUrl + ':' + prismaStudioPort;
 
+//Server
 
 const server = app.listen(backendPort, () =>
   console.log(
