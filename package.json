@@ -2,8 +2,27 @@
   "name": "prisma-pr",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
+    "setup": "cd backend && yarn install && cd ..",
+    "start": "docker-compose up",
+    "start-database": "docker-compose up database",
+    "start-prisma": "docker-compose up prisma",
+    "start-backend": "docker-compose up backend",
+    "stop": "docker-compose down",
+    "stop-database": "docker-compose down database",
+    "stop-prisma": "docker-compose down prisma",
+    "stop-backend": "docker-compose down backend",
+    "build": "docker-compose build",
+    "build-database": "docker-compose build database",
+    "build-prisma": "docker-compose build prisma",
+    "build-backend": "docker-compose build backend",
+    "clean": "docker system prune -af",
+    "clean-volumes": "docker volume prune -f",
+    "migrate:save": "run(){ docker exec -it prisma prisma migrate save --name $1 --experimental; }; run",
+    "migrate:first": "yarn migrate:save first && yarn migrate:up",
+    "migrate:up": "docker exec -it prisma prisma migrate up --experimental",
+    "migrate:down": "docker exec -it prisma prisma migrate down --experimental",
+    "seed": "docker exec -it backend yarn run seed",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -14,7 +33,7 @@
   },
   "dependencies": {
     "@prisma/client": "^2.0.1",
-    "@quixo3/prisma-session-store": "^0.1.6",
+    "@quixo3/prisma-session-store": "^0.1.8",
     "express": "^4.17.1",
     "express-session": "^1.17.1"
   }

@@ -1,0 +1,52 @@
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+
+generator client {
+  provider  = "prisma-client-js"
+}
+
+
+enum Role {
+  USER
+  ADMIN
+}
+
+
+model User {
+  id            String   @id
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  blacklisted   Boolean? @default(false)
+  phone         String?  @unique
+  email         String?  @unique
+  firstName     String?
+  lastName      String?
+  role          Role     @default(USER)
+  posts         Post[]
+}
+
+
+model Post {
+  id        String    @id
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  published Boolean
+  title     String
+  content   String?
+  author    User?     @relation(fields: [authorId], references: [id])
+  authorId  String?   @map("author") // relation scalar field (used in the `@relation` attribute above)
+}
+
+
+model Session {
+  id        String   @id
+  sid       String   @unique // In case session and db ids ever must differ 
+  data      String
+  expires   DateTime  // JS/TS Date() timestamp
+}
+
+

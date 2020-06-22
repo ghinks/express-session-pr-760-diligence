@@ -1,0 +1,74 @@
+version: '3.7'
+
+
+services:
+
+  database:
+    container_name: database
+    image: postgres:11.6
+    restart: always
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - ${DB_PORT}:${DB_PORT}
+    volumes:   
+      - database_data:/var/lib/postgresql/data
+
+  prisma:
+    links:
+      - database
+    depends_on:
+      - database
+    container_name: prisma
+    restart: always
+    ports:
+      - "${PRISMA_PORT}:${PRISMA_PORT}"
+    build:
+      context: backend/prisma
+      dockerfile: Dockerfile
+      args:
+       - PRISMA_NPM_PKG=${PRISMA_NPM_PKG}
+    environment:
+      DB_URL: ${DB_URL}
+      PRISMA_PACKAGE: ${PRISMA_NPM_PKG}
+    volumes:
+      - ./backend/prisma:/app/prisma  # -  /app/prisma
+
+  backend:
+    links:
+      - database
+    depends_on:
+      - database
+      - prisma
+    container_name: backend
+    restart: always
+    ports:
+      - "${BACKEND_PORT}:${BACKEND_PORT}"
+    build:
+      context: backend
+      dockerfile: Dockerfile
+      args:  # Required during building 
+        - DB_URL=${DB_URL}
+        - PRISMA_NPM_PKG=${PRISMA_NPM_PKG}
+    environment:
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_PORT: ${DB_PORT}
+      DB_URL: ${DB_URL}
+      PRISMA_NPM_PKG: ${PRISMA_NPM_PKG}
+      PRISMA_PORT: ${PRISMA_PORT}
+      BACKEND_PORT: ${BACKEND_PORT}
+      BACKEND_URL: ${BACKEND_URL}
+      EXPRESS_SESSION_SECRET: ${EXPRESS_SESSION_SECRET}
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+      - ./backend/prisma:/app/prisma
+
+volumes:
+  database_data:
+    driver: local
+
