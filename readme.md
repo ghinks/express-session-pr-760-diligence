@@ -21,7 +21,7 @@ Runs test suite located at: prisma-session-store/test/test-prisma-session-store.
 4. Install test dependencies (i.e. mocha), with ```yarn install ```
 5. Run tests, with ```yarn test```
 
-# Trying out Prisma
+# Simple Server, with Prisma-backed Session Store
 
 1. After setup (above), navigate to the project folder (express-session-pr-760-diligence)
 2. Run ```yarn seed```, to seed the database with 2 users.
@@ -33,7 +33,7 @@ REST API ready at:http://localhost:2020
 
 REST Endpoints:
 
-* / - Hello World, with prisma-session-store session cookie
+* / - Hello World
 
 * users/
 
