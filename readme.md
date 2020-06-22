@@ -1,7 +1,5 @@
 # due diligence
-Using a local docker postgres container and running prisma to setup. Some issues were
-encountered and this small repo is intended to help overcome any doubts about the
-prisma connect module.
+A repo to demonstrate the prisma-session-store module, in context.
 
 # Setup
 
@@ -34,6 +32,8 @@ Prisma Studio ready at:http://localhost:5555
 REST API ready at:http://localhost:2020
 
 REST Endpoints:
+
+* / - Hello World, with prisma-session-store session cookie
 
 * users/
 
